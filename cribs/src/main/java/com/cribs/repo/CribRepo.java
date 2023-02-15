@@ -11,6 +11,9 @@ import com.cribs.entity.Crib;
 @Repository
 public interface CribRepo extends JpaRepository<Crib, Integer> {
     
+    @Query(value="select * from crib where id = ?1", nativeQuery = true)
+    public Crib findCribById(Integer id);
+
     @Query(value="select * from crib where size = ?1", nativeQuery = true)
     public Crib lookupBySize(String size);
 

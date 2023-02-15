@@ -19,9 +19,17 @@ public class AgentService {
     public void deleteAgentById(Integer id) {
 
         agentRepo.deleteById(id);
-     }
-     public Agent lookupAgentById(Integer id) {
+    }
+    public Agent findAgentById(Integer id) {
 
-        return agentRepo.lookupAgentbyId(id);
-     }
+        return agentRepo.findAgentById(id);
+    }
+    public Agent updateCustomer(Agent agent) throws Exception {
+
+        if(agent.getId() != null) {
+
+                return agentRepo.save(agent);
+            }
+            throw new Exception("must have id or an existing id");
+    }
 }

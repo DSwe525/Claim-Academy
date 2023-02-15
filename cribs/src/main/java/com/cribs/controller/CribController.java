@@ -70,24 +70,49 @@ public class CribController {
         }
     }
     @RequestMapping(
-        value="/getCribByAddress/{street_number}/{street_name}",
+        value="/updateCrib",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
-        method = RequestMethod.GET
+        method = RequestMethod.POST
     )
-    public ResponseEntity<Object> getCribById(@PathVariable Integer id) {
-        
+    public ResponseEntity<Object> updateCrib(@RequestBody Crib crib) {
         try {
-            Address address = addressService.lookupById(id);
 
-            return new ResponseEntity<>(address, HttpStatus.OK);
+            crib = cribService.updateCrib(crib);
+
+            return new ResponseEntity<>(crib, HttpStatus.CREATED);
         }
-        catch (Exception e) {
+        catch(Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        catch (Error e) {
+        } 
+        catch(Error e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }  
+        }
     }
+    @RequestMapping(
+        value="/deleteCrib",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        method = RequestMethod.DELETE
+    )
+    public ResponseEntity<Object> deleteCrib(@PathVariable Integer id) {
+        try {
+
+            cribService.deleteCribById(id);
+
+            return new ResponseEntity<>(id, HttpStatus.NO_CONTENT);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } 
+        catch(Error e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }

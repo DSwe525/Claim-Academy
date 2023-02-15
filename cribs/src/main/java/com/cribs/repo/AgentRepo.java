@@ -8,6 +8,6 @@ import com.cribs.entity.Agent;
 public interface AgentRepo extends JpaRepository<Agent, Integer> {
     
     @Query(value="select * from agent where id = ?1", nativeQuery = true)
-    public Agent lookupAgentbyId(Integer id);
+    public Agent findAgentById(Integer id);
 
 }

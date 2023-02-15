@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cribs.entity.Address;
 import com.cribs.entity.Agent;
-import com.cribs.entity.Crib;
 import com.cribs.service.AddressService;
 import com.cribs.service.AgentService;
 import com.cribs.service.CribService;
@@ -72,17 +70,38 @@ public class AgentController {
         }
         }
     @RequestMapping(
-        value="/lookupAgentById",
+        value="/updateAgent",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        method = RequestMethod.POST
+    )
+    public ResponseEntity<Object> updateAgent(@RequestBody Agent agent) {
+        try {
+            agent = agentService.saveAgent(agent);
+    
+            return new ResponseEntity<>(agent, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } 
+        catch(Error e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @RequestMapping(
+        value="/findAgentById",
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.GET
     )
-    public ResponseEntity<Object> lookupAgentById(@PathVariable Integer id) {
+    public ResponseEntity<Object> findAgentById(@PathVariable Integer id) {
                 
     try {
         
-        agentService.deleteAgentById(id);
+        agentService.findAgentById(id);
         
-        return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(null,HttpStatus.OK);
     }
     catch (Exception e) {
         System.out.println(e.getMessage());

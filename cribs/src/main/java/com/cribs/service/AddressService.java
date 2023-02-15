@@ -17,7 +17,7 @@ public class AddressService {
         return addressRepo.save(address);
     }
 
-    public Address lookupById(Integer id) throws Exception {
+    public Address lookupAddressById(Integer id) throws Exception {
         
         Address address = addressRepo.lookupById(id);
 
