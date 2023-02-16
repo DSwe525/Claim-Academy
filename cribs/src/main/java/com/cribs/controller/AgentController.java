@@ -16,6 +16,7 @@ import com.cribs.service.AgentService;
 import com.cribs.service.CribService;
 
 @RestController
+@RequestMapping("/agent")
 public class AgentController {
     
     @Autowired
@@ -26,7 +27,7 @@ public class AgentController {
     AddressService addressService;
 
     @RequestMapping(
-        value="/addAgent",
+        value="/create",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -47,9 +48,7 @@ public class AgentController {
         }
     }
     @RequestMapping(
-        value="/deleteAgent",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE,
+        value="/delete",
         method = RequestMethod.DELETE
         )
         public ResponseEntity<Object> deleteAgent(@PathVariable Integer id) {
@@ -70,7 +69,7 @@ public class AgentController {
         }
         }
     @RequestMapping(
-        value="/updateAgent",
+        value="/update",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -91,7 +90,7 @@ public class AgentController {
         }
     }
     @RequestMapping(
-        value="/findAgentById",
+        value="/findById",
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.GET
     )

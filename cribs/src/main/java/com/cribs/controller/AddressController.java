@@ -14,19 +14,14 @@ import com.cribs.entity.Address;
 import com.cribs.service.AddressService;
 
 @RestController
+@RequestMapping("/address")
 public class AddressController {
     
     @Autowired
     AddressService addressService;
 
-    @RestController
-public class CustomerController {
-    
-    @Autowired
-    AddressService addressService;
-    
     @RequestMapping(
-        value="/addAddress",
+        value="/create",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -47,7 +42,7 @@ public class CustomerController {
         }
     }
     @RequestMapping(
-        value="/lookupAddressById",
+        value="/lookupById",
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.GET
     )
@@ -68,7 +63,7 @@ public class CustomerController {
     }  
     }
     @RequestMapping(
-        value="/updateAddress",
+        value="/update",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -91,7 +86,7 @@ public class CustomerController {
         }
         }
     @RequestMapping(
-        value="/deleteAddress",
+        value="/delete",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.DELETE
@@ -114,5 +109,4 @@ public class CustomerController {
         }
         }
 
-}
 }

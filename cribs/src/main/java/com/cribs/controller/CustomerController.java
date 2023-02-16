@@ -14,6 +14,7 @@ import com.cribs.entity.Customer;
 import com.cribs.service.CustomerService;
 
 @RestController
+@RequestMapping("/customer")
 public class CustomerController {
     
     @Autowired
@@ -84,7 +85,7 @@ public class CustomerController {
     }  
     }
     @RequestMapping(
-        value="/updateCustomer",
+        value="/update",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -107,9 +108,7 @@ public class CustomerController {
         }
         }
     @RequestMapping(
-        value="/deleteCustomer",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE,
+        value="/delete",
         method = RequestMethod.DELETE
         )
         public ResponseEntity<Object> deleteCustomer(@PathVariable Integer id) {

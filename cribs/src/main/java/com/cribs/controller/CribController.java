@@ -19,6 +19,7 @@ import com.cribs.service.AddressService;
 import com.cribs.service.CribService;
 
 @RestController
+@RequestMapping("/crib")
 public class CribController {
     
     @Autowired
@@ -27,7 +28,7 @@ public class CribController {
     AddressService addressService;
 
     @RequestMapping(
-        value="/getListOfCribs/",
+        value="/getList",
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.GET
     )
@@ -48,7 +49,7 @@ public class CribController {
     }  
     }
     @RequestMapping(
-        value="/addCrib",
+        value="/create",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -70,7 +71,7 @@ public class CribController {
         }
     }
     @RequestMapping(
-        value="/updateCrib",
+        value="/update",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
@@ -92,9 +93,7 @@ public class CribController {
         }
     }
     @RequestMapping(
-        value="/deleteCrib",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE,
+        value="/delete",
         method = RequestMethod.DELETE
     )
     public ResponseEntity<Object> deleteCrib(@PathVariable Integer id) {
