@@ -28,27 +28,6 @@ public class CribController {
     AddressService addressService;
 
     @RequestMapping(
-        value="/getList",
-        produces = MediaType.APPLICATION_JSON_VALUE,
-        method = RequestMethod.GET
-    )
-    public ResponseEntity<Object> getListOfCribs() {
-        
-        try {
-            List<Crib> loggedInCustomer = cribService.getCribsAvailable();
-
-            return new ResponseEntity<>(loggedInCustomer, HttpStatus.OK);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        catch (Error e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }  
-    }
-    @RequestMapping(
         value="/create",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
@@ -70,6 +49,28 @@ public class CribController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @RequestMapping(
+        value="/getList",
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        method = RequestMethod.GET
+    )
+    public ResponseEntity<Object> getListOfCribs() {
+        
+        try {
+            List<Crib> loggedInCustomer = cribService.getCribsAvailable();
+
+            return new ResponseEntity<>(loggedInCustomer, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        catch (Error e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }  
+    }
+
     @RequestMapping(
         value="/update",
         consumes = MediaType.APPLICATION_JSON_VALUE,

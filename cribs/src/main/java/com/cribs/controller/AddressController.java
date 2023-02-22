@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cribs.entity.Address;
 import com.cribs.service.AddressService;
+import com.cribs.service.CribService;
 
 @RestController
 @RequestMapping("/address")
@@ -19,6 +20,8 @@ public class AddressController {
     
     @Autowired
     AddressService addressService;
+    @Autowired
+    CribService cribService;
 
     @RequestMapping(
         value="/create",
@@ -26,8 +29,9 @@ public class AddressController {
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
     )
-    public ResponseEntity<Object> addAddress(@RequestBody Address address) {
+    public ResponseEntity<Object> addAddress(@RequestBody Address address, @PathVariable Integer cribId) {
         try {
+
             address = addressService.saveAddress(address);
 
             return new ResponseEntity<>(address, HttpStatus.CREATED);

@@ -2,6 +2,7 @@ package com.cribs.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,18 +22,38 @@ public class Crib {
     private Integer id;
     @Column(name ="size")
     private String size;
+    @Column(name ="beds")
+    private Double beds;
+    @Column(name ="baths")
+    private Double baths;
     @Column(name ="price")
     private Double price;
     @Column(name ="date_posted")
-    LocalDateTime datePosted = LocalDateTime.now();
+    LocalDateTime datePosted;
     @Column(name ="image")
     private String image;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name="address_id")
     private Address address;
     
     public Crib() {
+    }
+
+    public Double getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Double beds) {
+        this.beds = beds;
+    }
+
+    public Double getBaths() {
+        return baths;
+    }
+
+    public void setBaths(Double baths) {
+        this.baths = baths;
     }
 
     public Integer getId() {
@@ -86,9 +107,10 @@ public class Crib {
 
     @Override
     public String toString() {
-        return "Crib [id=" + id + ", size=" + size + ", price=" + price + ", datePosted=" + datePosted + ", image="
-                + image + ", address=" + address + "]";
+        return "Crib [id=" + id + ", size=" + size + ", beds=" + beds + ", baths=" + baths + ", price=" + price
+                + ", datePosted=" + datePosted + ", image=" + image + ", address=" + address + "]";
     }
+
 
 
 

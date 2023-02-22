@@ -48,48 +48,6 @@ public class AgentController {
         }
     }
     @RequestMapping(
-        value="/delete",
-        method = RequestMethod.DELETE
-        )
-        public ResponseEntity<Object> deleteAgent(@PathVariable Integer id) {
-            
-        try {
-    
-            agentService.deleteAgentById(id);
-    
-            return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        catch (Error e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        }
-    @RequestMapping(
-        value="/update",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE,
-        method = RequestMethod.POST
-    )
-    public ResponseEntity<Object> updateAgent(@RequestBody Agent agent) {
-        try {
-            agent = agentService.saveAgent(agent);
-    
-            return new ResponseEntity<>(agent, HttpStatus.OK);
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } 
-        catch(Error e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @RequestMapping(
         value="/findById",
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.GET
@@ -111,5 +69,48 @@ public class AgentController {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
     }
+    @RequestMapping(
+        value="/update",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        method = RequestMethod.POST
+    )
+    public ResponseEntity<Object> updateAgent(@RequestBody Agent agent) {
+        try {
+            agent = agentService.saveAgent(agent);
+    
+            return new ResponseEntity<>(agent, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } 
+        catch(Error e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(
+        value="/delete",
+        method = RequestMethod.DELETE
+        )
+        public ResponseEntity<Object> deleteAgent(@PathVariable Integer id) {
+            
+        try {
+    
+            agentService.deleteAgentById(id);
+    
+            return new ResponseEntity<>(null,HttpStatus.NO_CONTENT);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        catch (Error e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        }
 
 }
