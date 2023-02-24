@@ -1,6 +1,6 @@
 package com.cribs.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class CribService {
 
     public Crib saveCrib(Crib crib, Address address) {
 
-        crib.setDatePosted(LocalDateTime.now());
+        crib.setDatePosted(LocalDate.now());
         crib.setAddress(address);
         return cribRepo.save(crib);
     }
@@ -29,6 +29,9 @@ public class CribService {
     }
     public List<Crib> getCribsAvailable() {
         return cribRepo.getCribsAvailable();
+    }
+    public List<Crib> getCribsSpecials() {
+        return cribRepo.getCribsSpecials();
     }
     public Crib getCribById(Integer cribId) {
 

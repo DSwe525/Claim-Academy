@@ -23,7 +23,10 @@ public interface CribRepo extends JpaRepository<Crib, Integer> {
     @Query(value="select * from crib where date_posted = ?1", nativeQuery = true)
     public Crib lookupByDatePosted(String datePosted);
     
-    @Query(value = "select * from crib where crib_id is null", nativeQuery = true)
+    @Query(value = "select * from crib where customer_id is null", nativeQuery = true)
     public List<Crib> getCribsAvailable();
+
+    @Query(value = "select * from crib where customer_id is null order by price asc limit 3", nativeQuery = true)
+    public List<Crib> getCribsSpecials();
     
 }

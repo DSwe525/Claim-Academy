@@ -1,5 +1,6 @@
 package com.cribs.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -29,7 +30,7 @@ public class Crib {
     @Column(name ="price")
     private Double price;
     @Column(name ="date_posted")
-    LocalDateTime datePosted;
+    LocalDate datePosted;
     @Column(name ="image")
     private String image;
 
@@ -73,7 +74,7 @@ public class Crib {
     }
 
     public Double getPrice() {
-        if(LocalDateTime.now().isAfter(datePosted.plusDays(90))) {
+        if(LocalDate.now().isAfter(datePosted.plusDays(90))) {
             return this.price * .90;
         }
         return this.price;
@@ -82,11 +83,11 @@ public class Crib {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public LocalDateTime getDatePosted() {
+    public LocalDate getDatePosted() {
         return datePosted;
     }
 
-    public void setDatePosted(LocalDateTime datePosted) {
+    public void setDatePosted(LocalDate datePosted) {
         this.datePosted = datePosted;
     }
     public String getImage() {
