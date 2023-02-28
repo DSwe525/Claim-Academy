@@ -5,7 +5,7 @@ function MainContent(props) {
 
 
   return (
-    <div className='main-content flex-row bg'>
+    <div className='main-content bg'>
         {props.children}
     </div>
   )

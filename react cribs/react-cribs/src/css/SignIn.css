@@ -1,0 +1,29 @@
+.main-page-box {
+  
+    justify-content: center;
+    position: relative;
+    border: solid black;
+    background-color: white;
+    border-radius: 20px;
+    padding: 2% 4%;
+  }
+.title-text {
+    font: bolder;
+    justify-content: center;
+    font-size: xx-large;
+    margin-bottom: 10px;
+
+  }
+.text-box-margins {
+    border-radius: 30px;
+    padding: 10px;
+}
+.text-format {
+    padding-right: 10px;
+}
+.button-formatting {
+    margin-top: 10px;
+    width: 33%;
+    margin-left: 33%;
+    justify-content: center;
+}

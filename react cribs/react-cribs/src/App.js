@@ -1,64 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css';
 import PageWrapper from './components/PageWrapper';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime'
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import { Routes, Route } from 'react-router-dom'
+import axios from 'axios'
 
 function App() {
 
   const [isLoading, setIsLoading] = useState(true)
-  const [cribs, setCribs] = useState([])
-
-dayjs.extend(relativeTime);
+  const [cribs, setCribs] = useState({
+    size: null,
+    beds: null,
+    baths: null,
+    price: null,
+    datePosted: '',
+    image: ''
+  })
+  const [customer, setCustomer] = useState({
+    email: '',
+    password: ''
+  })
   useEffect(() => {
-    
-    axios.get('http://localhost:8080/crib/getlistofspecials')
-      .then((response) => {
-        setCribs(response.data)
-        setIsLoading(false)
-
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-      
-
+    const email = localStorage.getItem("email")
+    axios.get(`http://localhost:8080/customer/getCustomerByEmail/${email}`)
+    .then((response) =>{
+      setCustomer(response.data)
+      setIsLoading(false)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
   }, [])
 
-  const renderContent = () => {
 
-    if(isLoading) {
-      return null
-    } else {
-      return (
-      <PageWrapper>
-        <div className="justify-content-center">
-        <div className="main-page-box flex-row">
-        {
-          cribs.map((crib) => {
-            const daysFromNow = dayjs(crib.datePosted).fromNow()
-            return (
-            <div className='flex-col justify-content-center'>
-            <img src={crib.image} className="crib-photos"/>
-            <div className='align-text-center'>Square Feet: {crib.size}</div>
-            <div className='align-text-center'>Beds: {crib.beds}</div>
-            <div className='align-text-center'>Baths: {crib.baths}</div>
-            <div className='align-text-center'>Day(s) On Market:  {daysFromNow}</div>
-            <div className='align-text-center'>Price: ${crib.price}</div>
-            <button className="button-format">Buy Now!</button>
-            </div>
-            )
-          })
-        }
-        </div>
-        </div>
-      </PageWrapper>
-      )
-    }
-  }
   return (
-    renderContent()
+    <PageWrapper customer={customer} setCustomer={setCustomer}>
+    <Routes>
+      <Route path="/" element={<Home customer={customer} isLoading={isLoading} setIsLoading={setIsLoading} cribs={cribs} setCribs={setCribs}/>} />
+      <Route path="/SignUp" element={<SignUp customer={customer} setCustomer={setCustomer} />} />
+      <Route path="/SignIn" element={<SignIn customer={customer} setCustomer={setCustomer} />} />
+    </Routes>
+    </PageWrapper>
   )
 }
 

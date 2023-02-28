@@ -1,0 +1,96 @@
+html body {
+    height: 100vh;
+    width: 100vw;
+  }
+  .bg {
+    background-image: url("https://th.bing.com/th/id/R.b27cb86722ffbcc3118e2098931646ec?rik=wK8LCQWgT3xgGw&riu=http%3a%2f%2fmtv-intl.mtvnimages.com%2furi%2fmgid%3aarc%3acontent%3amtv.nl%3a676cc97b-35af-45b2-866a-3ed2c5464802%3fep%3dmtv.nl%26stage%3dlive%26format%3djpg%26quality%3d0.8&ehk=RzFBV2QpR54J31oiAzXYaAYL1%2f9Bq%2fFGS0mfXR120s0%3d&risl=&pid=ImgRaw&r=0");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  #root {
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  *:not(head) {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-row {
+    flex-direction: row;
+  }
+  
+  .page {
+    width: 100%;
+    height: 100%;
+  }
+  .header {
+    height: 8%;
+    background-color: #031eb3;
+    color: black;
+  }
+  
+  .main-content {
+    height: 92%;
+  }
+  .third-width {
+    width: 33%;
+  }
+  .left-links {
+    margin: auto 30px;
+    color: white;
+    text-decoration: none;
+  }
+  .right-links {
+    margin: auto 30px;
+    color: white;
+    text-decoration: none;
+  }
+  .justify-content-right {
+    justify-content: right;
+  }
+  .justify-content-center {
+    justify-content: center;
+  }
+  .align-text-center {
+    justify-content: center;
+  }
+  .crib-photos {
+    height: 40%;
+    width: 200px;
+    border-radius: 10px;
+    margin: 20px;
+    border: 3px solid #031eb3;
+  }
+  .main-page-box {
+  
+    justify-content: center;
+    position: relative;
+    border: solid black;
+    background-color: white;
+    border-radius: 50px;
+    padding: 2% 4%;
+  }
+  .main-content-title {
+    justify-content: center;
+    font-size: 200%;
+    display: flex;
+  }
+  .button-format {
+    margin-top: 10px;
+    margin-left: 33%;
+    border-radius: 4px;
+    border: 1px solid #031eb3;
+    width: 33%;
+    height: 10%;
+    color: white;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+  }
+  
