@@ -3,6 +3,7 @@ package com.cribs.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cribs.entity.Crib;
 import com.cribs.entity.Customer;
 import com.cribs.repo.CustomerRepo;
 
@@ -11,13 +12,15 @@ public class CustomerService {
     
     @Autowired
     CustomerRepo customerRepo;
+    @Autowired
+    CribService cribService;
 
     public Customer save(Customer customer) {
 
         return customerRepo.save(customer);
     }
 
-    public Customer findUserById(Integer id) {
+    public Customer findCustomerById(Integer id) {
 
         return customerRepo.findById(id).get();
     }
@@ -50,10 +53,24 @@ public class CustomerService {
     public Customer updateCustomer(Customer customer) throws Exception {
 
         if(customer.getId() != null || 
-            findUserById(customer.getId()) != null) {
+        findCustomerById(customer.getId()) != null) {
 
                 return save(customer);
             }
             throw new Exception("must have id or an existing id");
+    }
+
+    public Customer buyCrib(String email, Integer id) throws Exception {
+
+        Crib crib = cribService.getCribById(id);
+
+        if(crib.getId() != null) {
+        Customer loggedInCustomer = getByEmail(email);
+
+        loggedInCustomer.getCribsPurchased().add(crib);
+
+        return save(loggedInCustomer);
+    }
+        throw new Exception("must have id or an existing id");
     }
 }

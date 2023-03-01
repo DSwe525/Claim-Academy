@@ -30,6 +30,14 @@ public class Customer {
     @JoinColumn(name="customer_id", referencedColumnName = "id")
     private List<Crib> cribsPurchased;
     
+    public List<Crib> getCribsPurchased() {
+        return cribsPurchased;
+    }
+
+    public void setCribsPurchased(List<Crib> cribsPurchased) {
+        this.cribsPurchased = cribsPurchased;
+    }
+
     public Customer() {
     }
 

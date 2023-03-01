@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cribs.entity.Address;
 import com.cribs.entity.Crib;
+import com.cribs.entity.Customer;
 import com.cribs.service.AddressService;
 import com.cribs.service.CribService;
+import com.cribs.service.CustomerService;
 
 @RestController
 @RequestMapping("/crib")
@@ -26,6 +28,8 @@ public class CribController {
     
     @Autowired
     CribService cribService;
+    @Autowired
+    CustomerService customerService;
     @Autowired
     AddressService addressService;
 
@@ -93,7 +97,28 @@ public class CribController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }  
     }
+    @RequestMapping(
+        value="/buycrib",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        method = RequestMethod.POST
+    )
+    public ResponseEntity<Object> buyCrib(@PathVariable String email, Integer id) {
+        try {
 
+            Customer customer = customerService.buyCrib(email, id);
+
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } 
+        catch(Error e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @RequestMapping(
         value="/update",
         consumes = MediaType.APPLICATION_JSON_VALUE,

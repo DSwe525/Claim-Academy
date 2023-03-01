@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 
 function Home(props) {
 
-
     useEffect(() => {
       
         axios.get('http://localhost:8080/crib/getlistofspecials')
@@ -24,18 +23,27 @@ function Home(props) {
 
     const renderContent = () => {
 
-    if(props.isLoading) {
-        return null
-    } else {
-        return (
-            <Specials cribs={props.cribs} setCribs={props.setCribs} />
-          )
+    if(props.agent.id !== undefined || props.customer.id === undefined) {
+      if(props.isLoading) {
+          return null
+      } else {
+          return (
+            <></>
+            )
+          }
+        } else {
+          if(props.isLoading) {
+            return null
+        } else {
+            return (
+                <Specials cribs={props.cribs} setCribs={props.setCribs} />
+              )
+            }
         }
       }
-
-  return (
-    renderContent()
-  )
-}
+    return (
+      renderContent()
+    )
+  }
 
 export default Home

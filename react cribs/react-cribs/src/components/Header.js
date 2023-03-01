@@ -11,11 +11,31 @@ const Header = (props) => {
         email: '',
         password: ''
     })
+    localStorage.removeItem("agentEmail")
+    props.setAgent({
+        email: '',
+        password: ''
+    })
     navigate('/')
   }
 
   const renderHeader = () => {
-    if(props.customer.id === undefined) {
+    if(props.agent.id !== undefined) {
+      return (
+        <div className="flow-row header">
+        <div className="third-width justify-content-center">
+          <a href="/" className="left-links">Home</a>
+          <a href="/AddACrib" className="left-links">Add A Crib</a>
+        </div>
+        <div className="third-width justify-content-center">
+              <img src="https://www.pennlive.com/resizer/1_N2a7ZmcLf6LYtYAkWG07PML8Y=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/OYGGYJAY3BEKXJOHW7LAQRYI7M.png" />
+        </div>
+        <div className="third-width justify-content-right">
+          <a href="/" className="right-links" onClick={signOut}>Sign Out</a>
+        </div>
+      </div>
+      )
+    } else if(props.customer.id === undefined) {
       return (
         <div className="flow-row header">
         <div className="third-width justify-content-center">
@@ -27,25 +47,26 @@ const Header = (props) => {
         <div className="third-width justify-content-right">
           <a href="/SignIn" className="right-links">Sign In</a>
           <a href="/SignUp" className="right-links">Sign Up</a>
+          <a href="/Agent" className="right-links">Agents</a>
         </div>
       </div>
-      )
+      )  
     } else {
-      return (
-        <div className="flow-row header">
-        <div className="third-width justify-content-center">
-          <a href="/" className="left-links">Home</a>
-          <a href="/BuyACrib" className="left-links">See The Cribs</a>
-        </div>
-        <div className="third-width justify-content-center">
-              <img src="https://www.pennlive.com/resizer/1_N2a7ZmcLf6LYtYAkWG07PML8Y=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/OYGGYJAY3BEKXJOHW7LAQRYI7M.png" />
-        </div>
-        <div className="third-width justify-content-right">
-          <a href="/" className="right-links" onClick={signOut}>Sign Out</a>
-        </div>
+    return (
+      <div className="flow-row header">
+      <div className="third-width justify-content-center">
+        <a href="/" className="left-links">Home</a>
+        <a href="/BuyACrib" className="left-links">See The Cribs</a>
       </div>
-      )
-    }
+      <div className="third-width justify-content-center">
+            <img src="https://www.pennlive.com/resizer/1_N2a7ZmcLf6LYtYAkWG07PML8Y=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/OYGGYJAY3BEKXJOHW7LAQRYI7M.png" />
+      </div>
+      <div className="third-width justify-content-right">
+        <a href="/" className="right-links" onClick={signOut}>Sign Out</a>
+      </div>
+    </div>
+    )
+  }
   }
 
   return (

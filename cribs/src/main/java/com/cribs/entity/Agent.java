@@ -21,6 +21,10 @@ public class Agent {
     private Integer id;
     @Column(name ="name")
     private String name;
+    @Column(name ="email")
+    private String email;
+    @Column(name ="password")
+    private String password;
     @Column(name ="phone_number")
     private String phoneNumber;
     @Column(name ="image")
@@ -35,6 +39,30 @@ public class Agent {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Crib> getCribsForSale() {
+        return cribsForSale;
+    }
+
+    public void setCribsForSale(List<Crib> cribsForSale) {
+        this.cribsForSale = cribsForSale;
     }
 
     public void setId(Integer id) {

@@ -24,6 +24,19 @@ public class AgentService {
 
         return agentRepo.findAgentById(id);
     }
+    public Agent findAgentByEmail(String email) {
+
+    return agentRepo.findAgentByEmail(email);
+    }
+    public Agent login(Agent agent) throws Exception {
+
+        agent = agentRepo.login(agent.getEmail(), agent.getPassword());
+
+        if(agent != null) {
+            return agent;
+        }
+        throw new Exception("You Email/Password combo does not exist, try again");
+    }
     public Agent updateCustomer(Agent agent) throws Exception {
 
         if(agent.getId() != null) {

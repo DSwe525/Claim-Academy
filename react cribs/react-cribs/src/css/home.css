@@ -70,7 +70,7 @@ html body {
   .main-page-box {
   
     justify-content: center;
-    position: relative;
+    position: static;
     border: solid black;
     background-color: white;
     border-radius: 50px;
