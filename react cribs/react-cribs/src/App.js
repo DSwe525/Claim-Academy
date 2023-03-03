@@ -13,9 +13,20 @@ import AddACrib from './pages/AddACrib';
 function App() {
 
   const [isLoading, setIsLoading] = useState(true)
-  const [cribs, setCribs] = useState([
-
-  ])
+  const [address, setAddress] = useState({
+    streetNumber: 0,
+    streetName: '',
+    city: '',
+    state: '',
+    zipCode: 0
+  })
+  const [cribs, setCribs] = useState({
+    price: 0,
+    beds: 0,
+    baths: 0,
+    size: 0,
+    image: ""
+})
   const [customer, setCustomer] = useState({
     email: '',
     password: ''
@@ -41,14 +52,14 @@ function App() {
   else if(agentEmail != null) {
     axios.get(`http://localhost:8080/agent/findByEmail/${agentEmail}`)
     .then((response) =>{
-      setCustomer(response.data)
+      setAgent(response.data)
       setIsLoading(false)
     })
     .catch((e) => {
       console.log(e)
     })
   }
-  }, [])
+  },[])
 
 
   return (
@@ -57,9 +68,9 @@ function App() {
       <Route path="/" element={<Home customer={customer} isLoading={isLoading} setIsLoading={setIsLoading} cribs={cribs} setCribs={setCribs} agent={agent} setAgent={setAgent} />} />
       <Route path="/SignUp" element={<SignUp customer={customer} setCustomer={setCustomer} />} />
       <Route path="/SignIn" element={<SignIn customer={customer} setCustomer={setCustomer} />} />
-      <Route path="/BuyACrib" element={<BuyACrib customer={customer} setCustomer={setCustomer} isLoading={isLoading} setIsLoading={setIsLoading} cribs={cribs} setCribs={setCribs} />} />
+      <Route path="/BuyACrib" element={<BuyACrib customer={customer} isLoading={isLoading} setIsLoading={setIsLoading} cribs={cribs} setCribs={setCribs} address={address} setAddress={setAddress}/>} />
       <Route path="/Agent" element={<Agent agent={agent} setAgent={setAgent} />} />
-      <Route path="/AddACrib" element={<AddACrib agent={agent} setAgent={setAgent} cribs={cribs} setCribs={setCribs} />} />
+      <Route path="/AddACrib" element={<AddACrib agent={agent} cribs={cribs} setCribs={setCribs} address={address} setAddress={setAddress}/>} />
     </Routes>
     </PageWrapper>
   )

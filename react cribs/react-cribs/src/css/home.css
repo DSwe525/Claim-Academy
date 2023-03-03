@@ -34,7 +34,9 @@ html body {
     background-color: #031eb3;
     color: black;
   }
-  
+  .margin-bottom {
+    margin-bottom: 20px;
+  }
   .main-content {
     height: 92%;
   }
@@ -78,15 +80,17 @@ html body {
   }
   .main-content-title {
     justify-content: center;
+    align-items: center;
     font-size: 200%;
     display: flex;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   .button-format {
     margin-top: 10px;
     margin-left: 33%;
     border-radius: 4px;
     border: 1px solid #031eb3;
-    width: 33%;
+    width: 40%;
     height: 10%;
     color: white;
     background-color: green;

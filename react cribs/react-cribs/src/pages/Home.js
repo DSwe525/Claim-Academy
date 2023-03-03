@@ -1,5 +1,6 @@
 import React from 'react'
 import Specials from '../components/Specials'
+import AgentProfile from '../components/AgentProfile'
 import '../css/home.css'
 import axios from 'axios'
 import { useEffect } from 'react'
@@ -17,28 +18,35 @@ function Home(props) {
           .catch((e) => {
             console.log(e)
           })
-          
-    
       }, [])
 
     const renderContent = () => {
 
-    if(props.agent.id !== undefined || props.customer.id === undefined) {
-      if(props.isLoading) {
-          return null
-      } else {
-          return (
-            <></>
-            )
-          }
-        } else {
+
+        if (props.agent.id !== undefined) {
           if(props.isLoading) {
             return null
         } else {
             return (
-                <Specials cribs={props.cribs} setCribs={props.setCribs} />
+              <AgentProfile agent={props.agent} />
               )
             }
+          } else if ( props.customer.id === undefined) {
+              if(props.isLoading) {
+                  return null
+              } else {
+                  return (
+                    <></>
+                    )
+                  }
+          } else {
+            if(props.isLoading) {
+              return null
+          } else {
+              return (
+                  <Specials cribs={props.cribs} setCribs={props.setCribs} />
+                )
+              }
         }
       }
     return (

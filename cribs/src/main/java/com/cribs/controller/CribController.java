@@ -98,15 +98,17 @@ public class CribController {
     }  
     }
     @RequestMapping(
-        value="/buycrib",
+        value="/buycrib/{id}",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.POST
     )
-    public ResponseEntity<Object> buyCrib(@PathVariable String email, Integer id) {
+    public ResponseEntity<Object> buyCrib(@RequestBody Customer customer, @PathVariable Integer id) {
         try {
 
-            Customer customer = customerService.buyCrib(email, id);
+            Crib crib = cribService.getCribById(id);
+
+            customer = customerService.buyCrib(customer, crib);
 
             return new ResponseEntity<>(customer, HttpStatus.OK);
         }

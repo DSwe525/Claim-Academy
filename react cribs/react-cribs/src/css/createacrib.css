@@ -1,0 +1,17 @@
+.main-page-box {
+  
+    justify-content: center;
+    position: relative;
+    border: solid black;
+    background-color: white;
+    border-radius: 50px;
+    padding: 2% 4%;
+    margin: 6%;
+  }
+.margin {
+    margin: 10px
+}
+.justify-center {
+    justify-content: center;
+    align-items: center;
+}

@@ -29,7 +29,7 @@ public class Crib {
     @Column(name ="price")
     private Double price;
     @Column(name ="date_posted")
-    LocalDate datePosted;
+    private LocalDate datePosted;
     @Column(name ="image")
     private String image;
 

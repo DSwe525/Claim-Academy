@@ -1,0 +1,17 @@
+.quarter-height {
+    height: 25%
+}
+.flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-row {
+    flex-direction: row;
+  }
+  .main-content-title2 {
+    justify-content: center;
+    align-items: center;
+    font-size: 400%;
+    display: flex;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }

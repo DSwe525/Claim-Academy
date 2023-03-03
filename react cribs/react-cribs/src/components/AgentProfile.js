@@ -1,26 +1,30 @@
 import React from 'react'
+import '../css/agentprofile.css'
+
 
 function AgentProfile(props) {
-  return (
+
+
+    const renderContent = () => {
+        return (
+        <div>
         <div className="main-page-box flex-col">
-        <div className='main-content-title flex-row'>Buy a Crib</div>
+        <div className='main-content-title flex-row'>Agent Profile</div>
         <div className='flex-row'>
-        {
-          props.agent.map((agent) => {
-            return (
             <div className='flex-col justify-content-center'>
-            <img src={agent.image} className="crib-photos"/>
-            <div className='justify-content-center'>Square Feet: {agent.size}</div>
-            <div className='justify-content-center'>Beds: {agent.beds}</div>
-            <div className='justify-content-center'>Baths: {agent.baths}</div>
-            <div className='justify-content-center'>Price: ${agent.price}</div>
+            <img src={props.agent.image} className="crib-photos"/>
+            <div className='justify-content-center'>Agent: {props.agent.name}</div>
+            <div className='justify-content-center'>Phone #: {props.agent.phoneNumber}</div>
+            <div className='justify-content-center'>Email: {props.agent.email}</div>
             </div>
-            )
-          })
-        }
         </div>
-        </div>
-      )
-}
+    </div>
+    </div>
+    )}
+
+    return (
+        renderContent()
+    )
+}   
 
 export default AgentProfile

@@ -1,26 +1,37 @@
 import React from 'react'
 import AgentProfile from '../components/AgentProfile'
-import axios from 'axios'
-import {useEffect} from 'react'
+import CreateACrib from '../components/CreateACrib'
+import AddressForm from '../components/AddressForm'
+import '../css/addacrib.css'
+
+
+
 
 function AddACrib(props) {
 
-    useEffect(() => {
-        const agentEmail = localStorage.getItem("agentEmail")
-        axios.get(`http://localhost:8080/agent/findByEmail/${agentEmail}`)
-          .then((response) => {
-            props.setAgent(response.data)
-            props.setIsLoading(false)
-    
-          })
-          .catch((e) => {
-            console.log(e)
-          })
-      }, [])
 
-  return (
-    <AgentProfile agent={props.agent} setAgent={props.setAgent}/>
-  )
+    const renderAddress = () => {
+        if(props.cribs.id !== undefined) {
+            return (
+                <AddressForm className='half-height' address={props.address} addressId={props.cribs.address.id} setAddress={props.setAddress}/>
+            )
+        } else {
+            return null
+        }
+    }
+    return (
+        <div className='flex-row half-width justify-center'>
+            <div className='half-width justify-center'>
+            <AgentProfile agent={props.agent} />
+            </div>
+            <div className='half-width flex-col justify-center'>
+            <CreateACrib className='justify-center half-height' cribs={props.cribs} setCribs={props.setCribs}/>
+            {
+            renderAddress()
+            }
+            </div>
+       </div>
+    )
 }
 
 export default AddACrib

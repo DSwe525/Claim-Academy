@@ -60,16 +60,13 @@ public class CustomerService {
             throw new Exception("must have id or an existing id");
     }
 
-    public Customer buyCrib(String email, Integer id) throws Exception {
+    public Customer buyCrib(Customer customer, Crib crib) throws Exception {
 
-        Crib crib = cribService.getCribById(id);
+        if(customer.getId() != null) {
 
-        if(crib.getId() != null) {
-        Customer loggedInCustomer = getByEmail(email);
+        customer.getCribsPurchased().add(crib);
 
-        loggedInCustomer.getCribsPurchased().add(crib);
-
-        return save(loggedInCustomer);
+        return save(customer);
     }
         throw new Exception("must have id or an existing id");
     }
